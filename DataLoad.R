@@ -5,6 +5,7 @@ library(dplyr)
 library(tibble)
 library(stringr)
 library(readxl)
+library(janitor)
 
 
 # Data Cleaning -----------------------------------------------------------
@@ -34,12 +35,37 @@ drinks_final <- drinks %>%
 # Life expectancy ---------------------------------------------------------
 
 
-life_exp <- as.tibble(read.csv("LifeExpectancy.csv"))
+life_exp_csv <- as.tibble(read.csv("LifeExpectancy.csv"))
 
-life_exp <- life_exp %>% 
+life_exp <- life_exp_csv %>% 
   mutate(metric = GhoDisplay,
          year = YearCode,
+         country = CountryDisplay,
          region = RegionDisplay,
          income_group = WorldBankIncomeGroupDisplay,
          sex = SexDisplay,
-         value = DisplayValue)
+         value = DisplayValue) %>% 
+  select(metric, year, country, region, income_group, sex, value) %>% 
+  mutate(income_group = str_replace_all(income_group, "_", " ")) %>% 
+  mutate_each(as.character, c(metric, country, region, sex))
+
+unique(life_exp$metric)  
+
+
+
+# Countries ---------------------------------------------------------------
+
+countries <- read_excel("CountriesOfTheWorld.xls", sheet = "Sheet1", range = "A4:P232")
+
+second_row_col_name_parts <- countries[1, ]
+second_row_col_name_parts[is.na(second_row_col_name_parts)] <- " "
+
+names(countries) <- paste(names(countries), second_row_col_name_parts, sep = " ")
+
+countries_final <- countries %>% 
+  slice(2:n()) %>% 
+  clean_names() 
+
+countires_final <- countries_final %>% 
+  mutate_each(as.numeric, c(area_sq_mi, pop_density_per_sq_mi, coastline_coast_area_ratio, infant_mortality_per_1000_births, 
+                            gdp_per_capita, literacy_percent, phones_per_1000, arable_percent, crops_percent, other_percent))
