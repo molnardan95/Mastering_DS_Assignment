@@ -9,6 +9,8 @@ library(readxl)
 
 # Data Cleaning -----------------------------------------------------------
 
+# Drinks ------------------------------------------------------------------
+
 drinks <- as.tibble(read.csv("Drinks.csv"))
 
 # The serving columns include '?' characters even thugh they should be numbers
@@ -29,4 +31,15 @@ drinks_final <- drinks %>%
   select(country, beer_servings, spirit_servings, wine_servings, total_alcohol_litres)
 
 
-?mutate_each
+# Life expectancy ---------------------------------------------------------
+
+
+life_exp <- as.tibble(read.csv("LifeExpectancy.csv"))
+
+life_exp <- life_exp %>% 
+  mutate(metric = GhoDisplay,
+         year = YearCode,
+         region = RegionDisplay,
+         income_group = WorldBankIncomeGroupDisplay,
+         sex = SexDisplay,
+         value = DisplayValue)
