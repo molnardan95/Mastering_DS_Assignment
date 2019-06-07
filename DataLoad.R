@@ -49,8 +49,6 @@ life_exp <- life_exp_csv %>%
   mutate(income_group = str_replace_all(income_group, "_", " ")) %>% 
   mutate_each(as.character, c(metric, country, region, sex))
 
-unique(life_exp$metric)  
-
 
 
 # Countries ---------------------------------------------------------------
@@ -66,6 +64,8 @@ countries_final <- countries %>%
   slice(2:n()) %>% 
   clean_names() 
 
-countires_final <- countries_final %>% 
+countries_final <- countries_final %>% 
   mutate_each(as.numeric, c(area_sq_mi, pop_density_per_sq_mi, coastline_coast_area_ratio, infant_mortality_per_1000_births, 
                             gdp_per_capita, literacy_percent, phones_per_1000, arable_percent, crops_percent, other_percent))
+
+rm(countries, drinks, life_exp_csv, second_row_col_name_parts)
