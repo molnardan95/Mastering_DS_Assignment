@@ -25,6 +25,7 @@ life_exp_birth_corr <- cor(data_life_exp_birth_num, use = "complete.obs")
 life_exp_birth_corr[, 20]
 
 corrplot(life_exp_birth_corr, method = "circle")
+ggsave("corrplot.png")
 
 # Healthy life expectancy -------------------------------------------------
 
