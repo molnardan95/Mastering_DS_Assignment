@@ -25,4 +25,11 @@ After joining the datasets I looked at the three different measures, and tried t
 
 ![alt text](https://github.com/molnardan95/Mastering_DS_Assignment/blob/master/Charts/corrplot.png)
 
+Thus, I decided to only dig deeper into ne of the metrics - the one about life expectancy at birth. Just by looking at the above chart, we can already tell which are the variables that correlate the most with this metric. It seems like alcohol consumption is not that important. In fact, it seems like that the more alcohol people consume, the longer they live. As we all know, correlation doesn't equal causation, and thus we should not draw the conclusion that we should drink more to live longer. 
+
+So than what could be the reason for this positive relationship?
+
+![alt text](https://github.com/molnardan95/Mastering_DS_Assignment/blob/master/Charts/variable_importance.png)
+
+
 
