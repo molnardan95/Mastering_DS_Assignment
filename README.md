@@ -23,4 +23,6 @@ Lastly, the countries table contained variables about all the countries that cou
 
 After joining the datasets I looked at the three different measures, and tried to look at a basic correlation matrix for all of them. It turns out that the variables available for us have roughly the same correlation for all three of the different metrics.
 
-![alt text](https://github.com/molnardan95/Mastering_DS_Assignment/blob/master/Charts/most_frequent_words.png)
+![alt text](https://github.com/molnardan95/Mastering_DS_Assignment/blob/master/Charts/corrplot.png)
+
+
